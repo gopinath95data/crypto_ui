@@ -32,11 +32,12 @@ export const getData = (ccs) =>{
 
   let obj = {}
   obj["price"] = n[0].text
-  obj["low"] = n1[9].text
-  obj["high"] = n1[13].text
+  obj["low"] = n1[9].text?n1[9].text:n1[7].text
+  obj["high"] = n1[13].text?.includes("$")?n1[13].text:n1[12].text
   obj["perc"] = n1[1].text
   obj["isDown"] = n1[2].isDown
-  obj["name"] = n2[0].text
+  obj["name"] = n2[0].text.split('(')[0].replaceAll("Price","")
+  obj["symbol"] = '('+n2[0].text.split('(')[1]
 
   return obj
   // console.log(obj)
